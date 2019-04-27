@@ -1,13 +1,13 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.contrib.auth import login, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import SignUpForm
 
 
-def general(req):
-    return render(req, "general.html")
+class GeneralView(LoginRequiredMixin, TemplateView):
+    template_name = "general.html"
 
 
 class SignUpView(CreateView):
