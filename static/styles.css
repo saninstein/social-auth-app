@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url("/static/bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#or-text {
+    width: 100%;
+    height: 17px;
+    border-bottom: 1.25px solid rgb(183, 187, 187);
+    text-align: center
+}
+
+#or-text span {
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+.auth img {
+    width: 18%;
+    padding-right: 10px;
+    padding-bottom: 2px;
+}
+
+.git a{
+    color: #5A72A1;
+}
+
+.google a{
+    color: #6E9ADA;
+}
+
+.input-group-text {
+    padding-left: 25px;
+}
+
+form {
+    min-width: 340px;
+}

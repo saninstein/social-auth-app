@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load css_tools %}
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <form class="col-4 bg-white rounded-sm shadow-sm" action="{% url "login" %}" method="POST">
+                {% csrf_token %}
+                <h5 class="text-center mt-4 mb-4">LOG IN WITH</h5>
+                {% include "includes/social.html" %}
+                <div class="mt-2">
+                    {% for field in form.visible_fields %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white border-right-0" id="basic-addon1">
+                                    {% if "password" in field.name %}
+                                        <i class="fa fa-lock"></i>
+                                    {% elif "name" in field.name %}
+                                        <i class="fa fa-envelope"></i>
+                                    {% endif %}
+
+                                </span>
+                            </div>
+                            {{ field|addclass:"form-control border-left-0" }}
+                        </div>
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in field.errors %}{{ error }}{% endfor %}
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+
+
+                    <button class="btn btn-primary btn-lg btn-block h-20 mt-1"><small>LOG IN</small></button>
+
+                </div>
+                <div class="row mt-4 mb-4">
+                    <div class="col-7">Don't you have an account?</div>
+                    <div class="col"><a href="{% url 'register' %}" class="btn btn-sm btn-outline-primary float-right btn-block w-20">SIGN UP</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

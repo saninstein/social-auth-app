@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% load css_tools %}
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <form class="col-4 bg-white rounded-sm shadow-sm" action="{% url "register" %}" method="POST">
+                {% csrf_token %}
+                <h5 class="text-center mt-4 mb-4">SIGN UP WITH</h5>
+                {% include "includes/social.html" %}
+                <div class="mt-2">
+                    {% for field in form.visible_fields %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white border-right-0" id="basic-addon1">
+                                    {% if "password" in field.name %}
+                                        <i class="fa fa-lock"></i>
+                                    {% elif "name" in field.name %}
+                                        <i class="fa fa-user-circle"></i>
+                                    {% else %}
+                                        <i class="fa fa-envelope"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            {{ field|addclass:"form-control border-left-0" }}
+                        </div>
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in field.errors %}{{ error }}{% endfor %}
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="custom-control custom-checkbox mb-1">
+                        <input type="checkbox" class="custom-control-input shadow-sm" id="customControlValidation1">
+                        <label class="custom-control-label" for="customControlValidation1">i'd like to receive PlacePass news and offers</label>
+                    </div>
+                    <small class="text-muted">By signing up I agree to the PlacePass<a href="#" class="text-decoration-none"> Terms of Service</a> and<a href="" class="text-decoration-none"> Privacy Policy</a>
+                    </small>
+                    <button class="btn btn-primary btn-lg btn-block h-20 mt-1"><small>REGISTER</small></button>
+
+                </div>
+                <div class="row mt-4 mb-4">
+                    <div class="col-7">Already have an account?</div>
+                    <div class="col"><a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary float-right btn-block w-20">LOG IN</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% load static %}
+<div class="auth row text-center mb-2">
+    <div class="col git"><img src="{% static "git.svg" %}" alt=""><a class="text-decoration-none" href="{% url 'social:begin' 'github' %}">GITHUB</a></div>
+    <div class="col-1">/</div>
+    <div class="col google"><img src="{% static "google.svg" %}" alt=""><a class="text-decoration-none" href="{% url 'social:begin' 'google-oauth2' %}">GOOGLE</a></div>
+</div>
+<div id="or-text" class="bg-white mb-4">
+    <span class="bg-white">or</span>
+</div>
